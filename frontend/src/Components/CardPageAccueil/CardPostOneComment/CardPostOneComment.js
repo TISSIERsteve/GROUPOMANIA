@@ -5,7 +5,7 @@ import Axios from 'axios';
 // CSS
 import "./CardPostComment.css"
 
-// ===== Components ajout commentaire sur un message dans card sur Page accueil =====
+// ===== Components COMMENTER SUR UN MESSAGE dans card sur Page accueil =====
 function CardPostComment(props) {
 
     const compte = JSON.parse(localStorage.id)
@@ -55,10 +55,13 @@ function CardPostComment(props) {
     // JSX
     return (
         <>
+
             <p className='boutton_commenter' onClick={handleShow}>Commenter</p>
             <div className={`profilesCommentsInput open ${isActive}`}>
-                <label></label>
-                <input className="profilesComments"
+                <label id='commentaires' className='label'>a</label>
+                <input
+                    title='commentaires'
+                    className="profilesComments"
                     id='commentaires'
                     type="text"
                     placeholder="Commentez la publication"
@@ -70,7 +73,7 @@ function CardPostComment(props) {
                     }}
                 ></input>
 
-                <button className='btn_modify'>
+                <button title='modifier' className='btn_modify'>
                     <i className="fas fa-plus-circle valide" onClick={addCommentUser}></i>
                 </button>
 

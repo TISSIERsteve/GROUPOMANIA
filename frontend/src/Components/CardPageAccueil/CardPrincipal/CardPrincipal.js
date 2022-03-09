@@ -51,10 +51,11 @@ function CardPrincipal({ isAdmin }) {
         }
     };
     const deleteCardImgDefini = id => {
-        Axios.delete("http://localhost:3001/api/posts/" + id).then(response => {
-            alert("En tant qu'administarteur vous avez bien supprimer l'image.");
-            window.location.reload();
-        });
+        Axios.delete("http://localhost:3001/api/posts/" + id)
+            .then(response => {
+                alert("En tant qu'administarteur vous avez bien supprimer l'image.");
+                window.location.reload();
+            });
     };
     // ======
 
@@ -108,7 +109,7 @@ function CardPrincipal({ isAdmin }) {
 
                                         <div className="profileComments">
                                             {/* Components pour like */}
-                                            <CardLike />
+                                            {/* <CardLike /> */}
 
                                             {/* Components poster un commentaire sur un message page accueil */}
                                             <PostComment idPost={x.message_perso_id} />
@@ -168,8 +169,8 @@ function CardPrincipal({ isAdmin }) {
                                             : {x.title}{" "}
                                         </p>
                                         <div className="profileComments">
-                                            {/* Component pour like */}
-                                            <CardLike />
+                                            {/* Component pour like image */}
+                                            <CardLike idLike={x.post_id} />
 
                                             {/* Components poster un commentaire sur image page accueil */}
                                             <ImageOneComment idy={x.post_id} />

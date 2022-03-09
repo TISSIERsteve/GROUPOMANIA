@@ -57,7 +57,7 @@ exports.login = (req, res, next) => {
                             exp: Math.floor(Date.now() / 1000) + 60 * 60,
                             id: result[0].user_id,
                         },
-                        "RANDOM_PRIVATE_KEY"
+                        process.env.JWT_SECRET
                     );
 
                     return res.status(200).json({

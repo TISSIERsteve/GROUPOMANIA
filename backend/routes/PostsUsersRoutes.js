@@ -10,4 +10,8 @@ router.post("/", token, multer, postsCtrl.createPost) // Créer une image sur pa
 router.delete("/:id", token, postsCtrl.deletePost) // Effacer une image sur page perso
 router.put("/:id", token, multer, postsCtrl.updateCommentImg) // Modifier image perso sur page perso
 
+router.put("/:id/likeImg", token, postsCtrl.likeImg) // Like image
+router.get("/:id", token, postsCtrl.getAllLike) // Obtenir les likes sur les images
+// router.put("/:id/disLikeImg", token, postsCtrl.disLikeImg) // Dislike image
+
 module.exports = router

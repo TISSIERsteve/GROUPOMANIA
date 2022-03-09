@@ -2,8 +2,9 @@ import React from 'react'
 import { useState } from "react"
 import Axios from 'axios';
 
+// Components ADMIN MODIFIER IMG
 function CardModifyImgAdmin({ adminImg }) {
-    console.log(adminImg);
+    // console.log(adminImg);
 
     const imgRegex = /(.*[A-Za-z]){5,30}/;
     const [legende, setlegende] = useState("");
@@ -67,7 +68,7 @@ function CardModifyImgAdmin({ adminImg }) {
     return (
         <div className='cardModifyCommentAdmin'>
 
-            <button onClick={modifyImg}>
+            <button title='modifier' onClick={modifyImg}>
                 <i className="fas fa-edit stylo_img" />
             </button>
 
@@ -79,6 +80,7 @@ function CardModifyImgAdmin({ adminImg }) {
                             <div className="addModifyItem">
                                 <label>Document(s) à télèchargé</label>
                                 <input
+                                    title='modifier image'
                                     className=""
                                     required
                                     type="file"
@@ -91,6 +93,7 @@ function CardModifyImgAdmin({ adminImg }) {
                         </div>
                         <div className="addPickItem_button_img">
                             <input
+                                title='ajouter une legende'
                                 type="text"
                                 placeholder="Mettre une légende"
                                 required

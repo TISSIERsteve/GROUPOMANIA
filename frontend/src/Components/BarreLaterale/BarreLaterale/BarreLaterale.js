@@ -27,6 +27,7 @@ function BarreLaterale(props) {
             alert("Vous venez de supprimé votre compte");
         });
     };
+    // ======
 
     // Fonction déconnexion
     const deconect = () => {
@@ -39,6 +40,7 @@ function BarreLaterale(props) {
         localStorage.clear();
         window.location.reload();
     };
+    // ======
 
     // JSX
     return (

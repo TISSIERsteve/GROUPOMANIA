@@ -51,15 +51,17 @@ function CardModifyComment() {
     return (
         <>
             <div className="pen">
-                <button onClick={handleShow}>
+                <button title='modifier' onClick={handleShow}>
                     <i className="fas fa-edit stylo" />
                 </button>
             </div>
 
             <div className={`profilesCommentsInput open ${isActive}`}>
                 {/* <form className='form'> */}
-                <label></label>
-                <input className="profilesComments modify"
+                <label title='commentaires' className='label'>a</label>
+                <input
+                    title='commentaires'
+                    className="profilesComments modify"
                     id='commentaires'
                     type="text"
                     placeholder="Modifier le message que vous avez publier"

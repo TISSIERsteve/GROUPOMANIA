@@ -11,7 +11,7 @@ exports.getAllMessages = (req, res, next) => {
                 });
             } else {
                 db.query(
-                    "SELECT post_id, title, fk_id_user, media_url, content, created_at AS date FROM post",
+                    "SELECT post_id, title, fk_id_user, likes_id, dislikes_id, media_url, content, created_at AS date FROM post",
                     (err, resultPosts) => {
                         if (err) {
                             return res
@@ -43,7 +43,7 @@ exports.getAllMessages = (req, res, next) => {
 exports.getOneMessage = (req, res, next) => {
     const id = req.params.id;
     db.query(
-        "SELECT message_perso_id,prenom,date,commentaire, fk_id_user FROM messageperso WHERE fk_id_user = ?  ORDER BY date DESC ",
+        "SELECT message_perso_id,prenom,date,commentaire, fk_id_user, likes_id, dislikes_id FROM messageperso WHERE fk_id_user = ?  ORDER BY date DESC ",
         [id],
         (err, resultMessages) => {
             if (err) {

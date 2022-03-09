@@ -17,7 +17,7 @@ module.exports = async (req, res, next) => {
         }
 
         // Si token correspond pas
-        const decodeToken = jwt.verify(token, "RANDOM_PRIVATE_KEY")
+        const decodeToken = jwt.verify(token, process.env.JWT_SECRET)
         const isAdmin = decodeToken.isAdmin; // Administarteur
         req.auth = { isAdmin }; // Administrateur
         if (!decodeToken) {

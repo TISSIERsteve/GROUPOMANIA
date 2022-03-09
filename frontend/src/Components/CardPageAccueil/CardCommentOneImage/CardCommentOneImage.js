@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from "react"
 import Axios from 'axios';
 
-// Component pour poster un commentaire sur image page accueil 
+// Component pour POSTER UN COMMENTAIRE SUR IMAGE page accueil 
 function CardCommentOneImage(props) {
 
     const compte = JSON.parse(localStorage.id)
@@ -54,8 +54,8 @@ function CardCommentOneImage(props) {
         <>
             <p className='boutton_commenter' onClick={handleShow}>Commenter</p>
             <div className={`profilesCommentsInput open ${isActive}`}>
-                <label></label>
-                <input className="profilesComments"
+                <label id='commentaires' className='label'>a</label>
+                <input title='commentaires' className="profilesComments"
                     id='commentaires'
                     type="text"
                     placeholder="Commentez l'image"
@@ -67,7 +67,7 @@ function CardCommentOneImage(props) {
                     }}
                 ></input>
 
-                <button className='btn_modify'>
+                <button title='modifier' className='btn_modify'>
                     <i className="fas fa-plus-circle valide" onClick={addCommentImg}></i>
                 </button>
 

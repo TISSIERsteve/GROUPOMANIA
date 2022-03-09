@@ -2,6 +2,7 @@ const express = require("express")
 const app = express()
 const cors = require("cors")
 const path = require("path")
+require("dotenv").config({ path: "./config/.env" })
 
 app.use(express.urlencoded({ extended: true })) //Middleware permet de passer des requêtes au niveau du body
 
@@ -15,8 +16,6 @@ const commentsRoutes = require("./routes/CommentsUsersRoutes")
 const postsRoutes = require("./routes/PostsUsersRoutes")
 const commentsRoutesImg = require("./routes/CommentsImgRoutes")
 
-// const likeRoutes = require("./routes/likeRoutes")
-
 // ==================================== Enregistrer mes routes avec chemins =====================================
 // Utilisateur
 app.use("/api/auth", authRoutes) // Route création et connexion utilisateurs
@@ -28,9 +27,6 @@ app.use("/api/comments", commentsRoutes) // Route publication commentaires sur m
 // Images
 app.use("/api/posts", postsRoutes) // Route publication images perso
 app.use("/api/contentImg", commentsRoutesImg) // Route publication commentaires sur une image utilisateurs
-
-// Like/Dislike
-// app.use("/api/like", likeRoutes) // Route pour like ou dislike
 
 // Middleware qui permet de charger les fichiers qui sont dans le dossier images
 app.use("/images", express.static(path.join(__dirname, "images")))

@@ -73,7 +73,7 @@ function CardModifyImg() {
     return (
         <div>
             <div className="pen">
-                <button onClick={modifyImg}>
+                <button title="modifier l'image" onClick={modifyImg}>
                     <i className="fas fa-edit stylo_img" />
                 </button>
             </div>
@@ -86,6 +86,7 @@ function CardModifyImg() {
                             <div className="addModifyItem">
                                 <label>Document(s) à télèchargé</label>
                                 <input
+                                    title='modifier image'
                                     className=""
                                     required
                                     type="file"
@@ -98,6 +99,7 @@ function CardModifyImg() {
                         </div>
                         <div className="addPickItem_button_img">
                             <input
+                                title='ajouter une legende'
                                 type="text"
                                 placeholder="Mettre une légende"
                                 required

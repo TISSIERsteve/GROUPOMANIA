@@ -5,6 +5,7 @@ import Axios from 'axios';
 // CSS
 import "../ModifyCommentAdmin/ModifyCommentAdmin.css"
 
+// Components ADMIN MODIFIER COMMENTAIRE
 function ModifyCommentAdmin({ adminComment }) {
 
     const [message, setmessageModify] = useState('')
@@ -51,15 +52,17 @@ function ModifyCommentAdmin({ adminComment }) {
     // JSX
     return (
         <div className='cardModifyCommentAdmin'>
-            <button onClick={AdminModifyComment}>
+            <button title='modifier' onClick={AdminModifyComment}>
                 <i className="fas fa-edit stylo" />
             </button>
 
             <div className={`profilesCommentsInput open ${isActive}`}>
 
                 <form className='form'>
-                    <label></label>
-                    <input className="input_admin"
+                    <label className='label'>a</label>
+                    <input
+                        title='modifier commentaire'
+                        className="input_admin"
                         id='commentaires'
                         type="text"
                         placeholder="Modifier le message en tant qu'administrateur"

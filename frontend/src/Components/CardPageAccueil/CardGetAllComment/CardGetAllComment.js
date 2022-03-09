@@ -5,11 +5,10 @@ import Axios from "axios";
 // CSS
 import "./CardGetComment.css";
 
-// ===== Components pour voir commentaires messages dans card page accueil =====
+// ===== Components pour VOIR LES COMMENTAIRES MESSAGES dans card page accueil =====
 function CardGetComment(props) {
 
     let isAdmin = (props.isAdmin);
-
     const authUser = parseInt(localStorage.id, 10);
     const prenom = JSON.parse(localStorage.prenom);
     const commentRegex = /(.*[A-Za-z]){5,30}/;
@@ -125,8 +124,9 @@ function CardGetComment(props) {
                                         ? <div>
                                             <div
                                                 className={`section_modify_comment_accueil ${x.comment_id === isModify.id && isModify.active ? "active" : ""}`}>
-                                                <label />
+                                                <label className="label">a</label>
                                                 <input
+                                                    title="commentaires"
                                                     className="accueil_input"
                                                     id="commentaires"
                                                     type="text"
@@ -143,22 +143,22 @@ function CardGetComment(props) {
                                             <div className="validate_accueil">
 
                                                 {/* Boutton modifier message page accueil */}
-                                                <button className="deleModif"
+                                                <button title="modifier" className="deleModif"
                                                     onClick={() => handleEdit(x.comment_id)}>
                                                     <i className="fas fa-edit stylo" />
                                                 </button>
 
                                                 {/* Boutton effacer message page accueil */}
-                                                <button
+                                                <button title="supprimer"
                                                     className="deleModif"
                                                     onClick={() => handleDelete(x.comment_id)}>
                                                     <i className="fas fa-trash-alt poubelle" />
                                                 </button>
 
                                                 {/* Boutton valider modification message */}
-                                                <button className="deleModif">
+                                                <button title="valider" className="deleModif">
                                                     <i
-                                                        className="fas fa-plus-circle accueil"
+                                                        className="fas fa-check accueil"
                                                         onClick={() => addModify(x.comment_id)}
                                                     />
                                                 </button>
