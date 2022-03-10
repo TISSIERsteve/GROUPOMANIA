@@ -7,7 +7,7 @@ import "./CardLike.css"
 
 // Components pour like image
 function CardLike({ idLike }) {
-    // console.log(id);
+    // console.log(idLike);
 
     // Afficher les likes images
     const [userlikes, setUserLikes] = useState([]);
@@ -61,7 +61,7 @@ function CardLike({ idLike }) {
                                 );
                             } return null
                         })
-                        : <li>0 Like(s)</li>
+                        : <li>0 like</li>
                 }
             </div>
             <div>

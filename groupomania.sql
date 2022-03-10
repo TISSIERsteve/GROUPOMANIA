@@ -69,6 +69,234 @@
 -- Version du serveur : 10.4.21-MariaDB
 -- Version de PHP : 8.0.12
 
+-- SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+-- START TRANSACTION;
+-- SET time_zone = "+00:00";
+
+
+-- /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+-- /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+-- /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+-- /*!40101 SET NAMES utf8mb4 */;
+
+-- --
+-- -- Base de données : `groupomania`
+-- --
+
+-- -- --------------------------------------------------------
+
+-- --
+-- -- Structure de la table `comment`
+-- --
+
+-- CREATE TABLE `comment` (
+--   `comment_id` int(10) UNSIGNED NOT NULL,
+--   `content` tinytext NOT NULL,
+--   `fk_id_user` int(10) UNSIGNED DEFAULT NULL,
+--   `fk_id_post` int(10) UNSIGNED DEFAULT NULL,
+--   `fk_id_message` int(10) UNSIGNED DEFAULT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --
+-- -- Déchargement des données de la table `comment`
+-- --
+
+-- INSERT INTO `comment` (`comment_id`, `content`, `fk_id_user`, `fk_id_post`, `fk_id_message`) VALUES
+-- (154, 'moi steve je commente le message à 8h04', 151, NULL, 127),
+-- (155, 'moi steve je commente à 8h05', 151, NULL, 127),
+-- (156, 'moi steve je commente à 8h07', 151, NULL, 127),
+-- (157, 'moi steve je commente à 8h10', 151, NULL, 127);
+
+-- -- --------------------------------------------------------
+
+-- --
+-- -- Structure de la table `likes`
+-- --
+
+-- CREATE TABLE `likes` (
+--   `like_id` int(10) UNSIGNED NOT NULL,
+--   `dislike_id` int(10) UNSIGNED NOT NULL,
+--   `fk_id_user` int(10) UNSIGNED DEFAULT NULL,
+--   `fk_id_post` int(10) UNSIGNED DEFAULT NULL,
+--   `fk_id_message` int(10) UNSIGNED DEFAULT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- -- --------------------------------------------------------
+
+-- --
+-- -- Structure de la table `messageperso`
+-- --
+
+-- CREATE TABLE `messageperso` (
+--   `message_perso_id` int(10) UNSIGNED NOT NULL,
+--   `prenom` varchar(64) NOT NULL,
+--   `date` datetime DEFAULT current_timestamp(),
+--   `commentaire` varchar(255) NOT NULL,
+--   `fk_id_user` int(10) UNSIGNED DEFAULT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --
+-- -- Déchargement des données de la table `messageperso`
+-- --
+
+-- INSERT INTO `messageperso` (`message_perso_id`, `prenom`, `date`, `commentaire`, `fk_id_user`) VALUES
+-- (127, 'Steve', '2022-02-15 08:04:01', 'Bonjour moi c\'est steve je poste un message à 8h03', 151),
+-- (128, 'Steve', '2022-02-15 08:15:13', 'Moi steve je reposte un message à 8h15', 151);
+
+-- -- --------------------------------------------------------
+
+-- --
+-- -- Structure de la table `post`
+-- --
+
+-- CREATE TABLE `post` (
+--   `post_id` int(10) UNSIGNED NOT NULL,
+--   `created_at` datetime DEFAULT current_timestamp(),
+--   `title` varchar(255) NOT NULL,
+--   `fk_id_user` int(10) UNSIGNED DEFAULT NULL,
+--   `media_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+--   `content` text DEFAULT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- -- --------------------------------------------------------
+
+-- --
+-- -- Structure de la table `user`
+-- --
+
+-- CREATE TABLE `user` (
+--   `user_id` int(10) UNSIGNED NOT NULL,
+--   `nom` varchar(64) NOT NULL,
+--   `prenom` varchar(64) NOT NULL,
+--   `password` varchar(255) NOT NULL,
+--   `email` varchar(255) NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --
+-- -- Déchargement des données de la table `user`
+-- --
+
+-- INSERT INTO `user` (`user_id`, `nom`, `prenom`, `password`, `email`) VALUES
+-- (151, 'Tissier ', 'Steve', '$2b$10$0wDIa7SajvxMFv9Hkl9lBOmQPnPhasSI6om/ij9Zc0f2dMNlYe2Wq', 'test1@steve.fr'),
+-- (155, 'Tissier', 'Steve', '$2b$10$6sj1fp9SIKuz2LQO7CmniOhh7iTOafONvVfnw8kOMhkLlxsZkhYzW', 'test2@steve.fr'),
+-- (156, 'Dupond', 'Hadock', '$2b$10$bH4yzeEqAJp.tCoRDD/MkuNzin4pwARSpRuqn2OFQaWl3/KMrA1hO', 'test3@steve.fr'),
+-- (157, 'Tissier', 'Maeva', '$2b$10$ygf641Cj450eNOO.l0xr6O2vXOuWlwwxtLpzTdR2NLA8NTHyXZqoO', 'test4@maeva.fr'),
+-- (158, 'nath', 'nathanel', '$2b$10$YkuIBqlw6/3VIJ63UYuZUekh5mptvGLCb63pU9LDpoczBXBZIb/xO', 'nath@test.fr');
+
+-- --
+-- -- Index pour les tables déchargées
+-- --
+
+-- --
+-- -- Index pour la table `comment`
+-- --
+-- ALTER TABLE `comment`
+--   ADD PRIMARY KEY (`comment_id`),
+--   ADD KEY `fk_id_user` (`fk_id_user`),
+--   ADD KEY `fk_id_post` (`fk_id_post`),
+--   ADD KEY `fk_message` (`fk_id_message`);
+
+-- --
+-- -- Index pour la table `likes`
+-- --
+-- ALTER TABLE `likes`
+--   ADD KEY `fk_id_user` (`fk_id_user`);
+
+-- --
+-- -- Index pour la table `messageperso`
+-- --
+-- ALTER TABLE `messageperso`
+--   ADD PRIMARY KEY (`message_perso_id`),
+--   ADD KEY `fk_id_user` (`fk_id_user`);
+
+-- --
+-- -- Index pour la table `post`
+-- --
+-- ALTER TABLE `post`
+--   ADD PRIMARY KEY (`post_id`),
+--   ADD KEY `fk_id_user` (`fk_id_user`);
+
+-- --
+-- -- Index pour la table `user`
+-- --
+-- ALTER TABLE `user`
+--   ADD PRIMARY KEY (`user_id`),
+--   ADD UNIQUE KEY `email` (`email`);
+
+-- --
+-- -- AUTO_INCREMENT pour les tables déchargées
+-- --
+
+-- --
+-- -- AUTO_INCREMENT pour la table `comment`
+-- --
+-- ALTER TABLE `comment`
+--   MODIFY `comment_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=161;
+
+-- --
+-- -- AUTO_INCREMENT pour la table `messageperso`
+-- --
+-- ALTER TABLE `messageperso`
+--   MODIFY `message_perso_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
+
+-- --
+-- -- AUTO_INCREMENT pour la table `post`
+-- --
+-- ALTER TABLE `post`
+--   MODIFY `post_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+
+-- --
+-- -- AUTO_INCREMENT pour la table `user`
+-- --
+-- ALTER TABLE `user`
+--   MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
+
+-- --
+-- -- Contraintes pour les tables déchargées
+-- --
+
+-- --
+-- -- Contraintes pour la table `comment`
+-- --
+-- ALTER TABLE `comment`
+--   ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`fk_id_user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+--   ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`fk_id_post`) REFERENCES `post` (`post_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+--   ADD CONSTRAINT `fk_message` FOREIGN KEY (`fk_id_message`) REFERENCES `messageperso` (`message_perso_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- --
+-- -- Contraintes pour la table `likes`
+-- --
+-- ALTER TABLE `likes`
+--   ADD CONSTRAINT `likes_ibfk_1` FOREIGN KEY (`fk_id_user`) REFERENCES `user` (`user_id`);
+
+-- --
+-- -- Contraintes pour la table `messageperso`
+-- --
+-- ALTER TABLE `messageperso`
+--   ADD CONSTRAINT `messageperso_ibfk_1` FOREIGN KEY (`fk_id_user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- --
+-- -- Contraintes pour la table `post`
+-- --
+-- ALTER TABLE `post`
+--   ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`fk_id_user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+-- COMMIT;
+
+-- /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+-- /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+-- /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Hôte : 127.0.0.1
+-- Généré le : mer. 09 mars 2022 à 16:51
+-- Version du serveur : 10.4.21-MariaDB
+-- Version de PHP : 8.0.12
+
+-- TROISIEME FOIS PHP PLANTE
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -80,7 +308,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `groupomania`
+-- Base de données : `projet7_groupomania`
 --
 
 -- --------------------------------------------------------
@@ -132,16 +360,21 @@ CREATE TABLE `messageperso` (
   `prenom` varchar(64) NOT NULL,
   `date` datetime DEFAULT current_timestamp(),
   `commentaire` varchar(255) NOT NULL,
-  `fk_id_user` int(10) UNSIGNED DEFAULT NULL
+  `fk_id_user` int(10) UNSIGNED DEFAULT NULL,
+  `likes_id` longtext DEFAULT NULL,
+  `dislikes_id` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `messageperso`
 --
 
-INSERT INTO `messageperso` (`message_perso_id`, `prenom`, `date`, `commentaire`, `fk_id_user`) VALUES
-(127, 'Steve', '2022-02-15 08:04:01', 'Bonjour moi c\'est steve je poste un message à 8h03', 151),
-(128, 'Steve', '2022-02-15 08:15:13', 'Moi steve je reposte un message à 8h15', 151);
+INSERT INTO `messageperso` (`message_perso_id`, `prenom`, `date`, `commentaire`, `fk_id_user`, `likes_id`, `dislikes_id`) VALUES
+(127, 'Steve', '2022-02-15 08:04:01', 'Bonjour moi c\'est steve je poste un message à 8h03', 151, NULL, NULL),
+(128, 'Steve', '2022-02-15 08:15:13', 'Moi steve je reposte un message à 8h15', 151, NULL, NULL),
+(129, 'Steve', '2022-03-08 13:06:55', 'Bonjour moi c\'est steve', 151, NULL, NULL),
+(130, 'Steve', '2022-03-08 13:07:48', 'sssssssss', 151, NULL, NULL),
+(131, 'Katia', '2022-03-08 13:17:02', 'katia', 159, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -155,8 +388,18 @@ CREATE TABLE `post` (
   `title` varchar(255) NOT NULL,
   `fk_id_user` int(10) UNSIGNED DEFAULT NULL,
   `media_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `content` text DEFAULT NULL
+  `content` text DEFAULT NULL,
+  `likes_id` longtext NOT NULL,
+  `dislikes_id` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `post`
+--
+
+INSERT INTO `post` (`post_id`, `created_at`, `title`, `fk_id_user`, `media_url`, `content`, `likes_id`, `dislikes_id`) VALUES
+(106, '2022-03-08 13:23:13', 'vacances', 159, 'http://localhost:3001/images/20180523_0951101646742193889.jpg', 'Katia', '159,151', ''),
+(107, '2022-03-08 13:40:53', 'capture', 151, 'http://localhost:3001/images/Capture1646743253227.png', 'Steve', '', '');
 
 -- --------------------------------------------------------
 
@@ -169,19 +412,17 @@ CREATE TABLE `user` (
   `nom` varchar(64) NOT NULL,
   `prenom` varchar(64) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL
+  `email` varchar(255) NOT NULL,
+  `isAdmin` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`user_id`, `nom`, `prenom`, `password`, `email`) VALUES
-(151, 'Tissier ', 'Steve', '$2b$10$0wDIa7SajvxMFv9Hkl9lBOmQPnPhasSI6om/ij9Zc0f2dMNlYe2Wq', 'test1@steve.fr'),
-(155, 'Tissier', 'Steve', '$2b$10$6sj1fp9SIKuz2LQO7CmniOhh7iTOafONvVfnw8kOMhkLlxsZkhYzW', 'test2@steve.fr'),
-(156, 'Dupond', 'Hadock', '$2b$10$bH4yzeEqAJp.tCoRDD/MkuNzin4pwARSpRuqn2OFQaWl3/KMrA1hO', 'test3@steve.fr'),
-(157, 'Tissier', 'Maeva', '$2b$10$ygf641Cj450eNOO.l0xr6O2vXOuWlwwxtLpzTdR2NLA8NTHyXZqoO', 'test4@maeva.fr'),
-(158, 'nath', 'nathanel', '$2b$10$YkuIBqlw6/3VIJ63UYuZUekh5mptvGLCb63pU9LDpoczBXBZIb/xO', 'nath@test.fr');
+INSERT INTO `user` (`user_id`, `nom`, `prenom`, `password`, `email`, `isAdmin`) VALUES
+(151, 'Tissier ', 'Steve', '$2b$10$0wDIa7SajvxMFv9Hkl9lBOmQPnPhasSI6om/ij9Zc0f2dMNlYe2Wq', 'test1@steve.fr', 1),
+(159, 'Tissier', 'Katia', '$2b$10$SYv/eHnwRqvgB4eunU71yO3avxXQ2dFxS7ZFcZ73F6vYPbn8mL8k2', 'katia@orange.fr', NULL);
 
 --
 -- Index pour les tables déchargées
@@ -237,19 +478,19 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT pour la table `messageperso`
 --
 ALTER TABLE `messageperso`
-  MODIFY `message_perso_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
+  MODIFY `message_perso_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
 
 --
 -- AUTO_INCREMENT pour la table `post`
 --
 ALTER TABLE `post`
-  MODIFY `post_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+  MODIFY `post_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
+  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=160;
 
 --
 -- Contraintes pour les tables déchargées

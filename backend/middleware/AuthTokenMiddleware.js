@@ -28,20 +28,21 @@ module.exports = async (req, res, next) => {
             })
         }
 
-        db.query("SELECT * FROM user WHERE user_id=?", [decodeToken.id], (err, result) => {
-            if (err) {
-                throw (err)
-            }
-            if (result.length) {
-                next()
-            } else {
-                return res.status(401).json({
-                    success: false,
-                    result: null,
-                    message: "Utilisateur non authentifié "
-                })
-            }
-        })
+        db.query("SELECT * FROM user WHERE user_id=?",
+            [decodeToken.id], (err, result) => {
+                if (err) {
+                    throw (err)
+                }
+                if (result.length) {
+                    next()
+                } else {
+                    return res.status(401).json({
+                        success: false,
+                        result: null,
+                        message: "Utilisateur non authentifié "
+                    })
+                }
+            })
 
         // Problème si autre erreur serveur
     } catch (error) {
