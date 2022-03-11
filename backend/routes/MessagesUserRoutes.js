@@ -11,4 +11,7 @@ router.get("/:id", token, messagesCtrl.getOneMessage) // Obtenir mes messages pe
 router.delete("/:id", token, messagesCtrl.deleteMessage) // Effacer un message sur page perso
 router.put("/:id", token, messagesCtrl.updateMessage) // Modifier message perso sur page perso
 
+router.put("/:id/likeMessage", token, messagesCtrl.likeMessage) // Like message
+router.get("/:id/likes", token, messagesCtrl.getAllLikeMessage) // Obtenir les likes sur les messages
+
 module.exports = router

@@ -136,3 +136,69 @@ exports.updateMessage = (req, res, next) => {
         }
     )
 }
+
+// Like message
+exports.likeMessage = async (req, res) => {
+    const message_perso_id = req.params.id;
+    const userId = req.body.userId;
+
+    if (!userId || !message_perso_id) {
+        return res.status(400).json({ message: "Les champs sont manquants" });
+    }
+
+    db.query("SELECT * FROM messageperso WHERE message_perso_id=?",
+        [message_perso_id], (err, result) => {
+            if (err) {
+                throw err;
+            } else {
+                const userLikes = result[0].likes_id.length
+                    ? JSON.parse(result[0].likes_id)
+                    : [];
+
+                if (!userLikes.includes(userId)) {
+                    userLikes.push(userId);
+
+                } else {
+                    userLikes.splice(userLikes.indexOf(userId), 1);
+                }
+
+                const post = {
+                    likes_id: JSON.stringify(userLikes),
+                };
+
+                db.query(
+                    `UPDATE messageperso SET likes_id = ? WHERE message_perso_id = ?`,
+                    [post.likes_id, message_perso_id],
+                    (err, result) => {
+                        if (err) {
+                            throw err;
+                        } else {
+                            return res.status(200).json({ message: "Post modifié" });
+                        }
+                    }
+                );
+            }
+        });
+};
+
+// Obtenir les likes sur les messages
+exports.getAllLikeMessage = (req, res) => {
+    const id_like = req.params.id;
+
+    db.query(
+        `SELECT  message_perso_id ,likes_id FROM messageperso JOIN user ON fk_id_user = user_id WHERE fk_id_user`,
+        [id_like],
+        (err, result) => {
+            if (err) {
+                return res
+                    .status(403)
+                    .json({ message: "Accès refusé du like sur image" });
+            } else {
+                return res.status(200).json({
+                    result
+                });
+            }
+        }
+    );
+};
+

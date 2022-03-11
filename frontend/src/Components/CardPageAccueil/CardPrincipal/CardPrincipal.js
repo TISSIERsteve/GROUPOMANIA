@@ -6,13 +6,14 @@ import Axios from "axios";
 import PostComment from "../CardPostOneComment/CardPostOneComment";
 import GetComment from "../CardGetAllComment/CardGetAllComment";
 import ImageOneComment from "../CardCommentOneImage/CardCommentOneImage";
-import CardLike from "../CardLike/CardLike";
+import CardLikeImage from "../CardLike/CardLikeImage";
 import CardGetAllCommentImage from "../CardGetAllCommentImage/CardGetAllCommentImage";
 import CardModifyCommentAdmin from "../ModifyCommentAdmin/ModifyCommentAdmin";
 import CardModifyImgAdmin from "../CardModifyImgAdmin/CardModifyImgAdmin";
 
 // CSS
 import "./CardPrincipal.css";
+import CardLikeMessage from "../CardLike/CardLikeMessage";
 
 // ===== Components Card Page principal accueil =====
 function CardPrincipal({ isAdmin }) {
@@ -109,7 +110,7 @@ function CardPrincipal({ isAdmin }) {
 
                                         <div className="profileComments">
                                             {/* Components pour like */}
-                                            {/* <CardLike /> */}
+                                            <CardLikeMessage idLikeMessage={x.message_perso_id} />
 
                                             {/* Components poster un commentaire sur un message page accueil */}
                                             <PostComment idPost={x.message_perso_id} />
@@ -170,7 +171,7 @@ function CardPrincipal({ isAdmin }) {
                                         </p>
                                         <div className="profileComments">
                                             {/* Component pour like image */}
-                                            <CardLike idLike={x.post_id} />
+                                            <CardLikeImage idLike={x.post_id} />
 
                                             {/* Components poster un commentaire sur image page accueil */}
                                             <ImageOneComment idy={x.post_id} />
