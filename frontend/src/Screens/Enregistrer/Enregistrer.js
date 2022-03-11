@@ -7,7 +7,6 @@ import "./Enregistrer.css";
 
 // ===== Page création compte =====
 function Enregistrer() {
-
     const navigate = useNavigate();
     const [nom, setNom] = useState("");
     const [prenom, setPrenom] = useState("");
@@ -18,7 +17,6 @@ function Enregistrer() {
     const prenomRegex = /(.*[A-Za-z]){3,30}/;
     const pwdRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     const mailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-
 
     // Fonction enregistrer compte
     const addUser = e => {

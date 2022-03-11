@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken");
 
 // Création compte utilisateur
 exports.signup = (req, res, next) => {
-
     const nom = req.body.nom;
     const prenom = req.body.prenom;
     const password = req.body.password;
@@ -23,7 +22,9 @@ exports.signup = (req, res, next) => {
 
         db.query("INSERT INTO user set ?", user, (err, result) => {
             if (err) {
-                res.status(403).json({ message: "Accès refusé pour la création du compte" });
+                res
+                    .status(403)
+                    .json({ message: "Accès refusé pour la création du compte" });
             } else {
                 res.status(200).json({ message: "Utilisateur créer" });
             }
@@ -33,7 +34,6 @@ exports.signup = (req, res, next) => {
 
 // Connexion au compte utilisateur
 exports.login = (req, res, next) => {
-
     const password = req.body.password;
     const email = req.body.email;
 
@@ -42,20 +42,24 @@ exports.login = (req, res, next) => {
         [email],
         async (err, result) => {
             if (err) {
-                return res.status(403).json({ message: "Accès refusé pour la connexion au compte" });
+                return res
+                    .status(403)
+                    .json({ message: "Accès refusé pour la connexion au compte" });
             }
             if (result.length) {
                 const passwordOk = await bcrypt.compare(password, result[0].password);
 
                 if (passwordOk === false || email === false) {
-                    return res.status(403).json({ message: "Mot de passe non valide ou non renseigner" });
+                    return res
+                        .status(403)
+                        .json({ message: "Mot de passe non valide ou non renseigner" });
                 }
 
                 if (passwordOk) {
                     const token = jwt.sign(
                         {
                             exp: Math.floor(Date.now() / 1000) + 60 * 60,
-                            id: result[0].user_id,
+                            id: result[0].user_id
                         },
                         process.env.JWT_SECRET
                     );
@@ -66,12 +70,14 @@ exports.login = (req, res, next) => {
                         user: {
                             id: result[0].user_id,
                             email: result[0].email,
-                            prenom: result[0].prenom,
+                            prenom: result[0].prenom
                         }
                     });
                 }
             } else {
-                return res.status(404).json({ message: "Erreur serveur sur la connexion au compte" });
+                return res
+                    .status(404)
+                    .json({ message: "Erreur serveur sur la connexion au compte" });
             }
         }
     );
@@ -79,12 +85,13 @@ exports.login = (req, res, next) => {
 
 // Désactiver compte utilisateur
 exports.dessactive = (req, res, next) => {
-
     const id = req.params.id;
 
     db.query("DELETE FROM user WHERE user_id = ?", [id], (err, result) => {
         if (err) {
-            return res.status(403).json({ message: "Accés refusé pour supprimer compte" });
+            return res
+                .status(403)
+                .json({ message: "Accés refusé pour supprimer compte" });
         } else {
             return res.status(200).json({ message: "Utilisateur supprimer" });
         }
@@ -101,7 +108,7 @@ exports.loginIsAdmin = (req, res, next) => {
         (err, result) => {
             if (err) {
                 return res.status(403).json({
-                    message: "Accès refusé à la connexion en tant Administrateur",
+                    message: "Accès refusé à la connexion en tant Administrateur"
                 });
             } else {
                 return res.status(200).json({ isAdmin: result[0].isAdmin });

@@ -1,14 +1,13 @@
-import React from 'react'
-import { useState } from "react"
-import Axios from 'axios';
+import React from "react";
+import { useState } from "react";
+import Axios from "axios";
 
 // CSS
-import "./CardModifyImg.css"
+import "./CardModifyImg.css";
 
 // Components pour modifier une image perso sur page perso
 function CardModifyImg() {
-
-    const idyImg = JSON.parse(localStorage.id)
+    const idyImg = JSON.parse(localStorage.id);
 
     const imgRegex = /(.*[A-Za-z]){5,30}/;
 
@@ -21,15 +20,14 @@ function CardModifyImg() {
     };
 
     // Ouverture fenêtre
-    const [isActive, setisActive] = useState("")
+    const [isActive, setisActive] = useState("");
     const modifyImg = () => {
         if (isActive === "active") {
-            setisActive("")
-
+            setisActive("");
         } else {
-            setisActive("active")
+            setisActive("active");
         }
-    }
+    };
 
     // Fonction envoie image bdd
     const addModifyImg = e => {
@@ -45,14 +43,15 @@ function CardModifyImg() {
             formData.append("legende", legende);
             formData.append("image", postPicture);
             Axios.put(`http://localhost:3001/api/posts/${idyImg}`, formData)
-                .then((response) => {
-                    alert("Votre image à été modifiée")
-                    window.location.reload()
-                }).catch((err) => {
-                    if (err.response.data) {
-                        alert("Veuillez renseigner tous les champs pour modifier l'image")
-                    }
+                .then(response => {
+                    alert("Votre image à été modifiée");
+                    window.location.reload();
                 })
+                .catch(err => {
+                    if (err.response.data) {
+                        alert("Veuillez renseigner tous les champs pour modifier l'image");
+                    }
+                });
         } else {
             alert(
                 "Veuillez à remplir tous les champs avec un minimun de 5 caractéres"
@@ -86,7 +85,7 @@ function CardModifyImg() {
                             <div className="addModifyItem">
                                 <label>Document(s) à télèchargé</label>
                                 <input
-                                    title='modifier image'
+                                    title="modifier image"
                                     className=""
                                     required
                                     type="file"
@@ -99,7 +98,7 @@ function CardModifyImg() {
                         </div>
                         <div className="addPickItem_button_img">
                             <input
-                                title='ajouter une legende'
+                                title="ajouter une legende"
                                 type="text"
                                 placeholder="Mettre une légende"
                                 required
@@ -123,7 +122,7 @@ function CardModifyImg() {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default CardModifyImg
+export default CardModifyImg;

@@ -7,7 +7,6 @@ import "./AjouterImage.css";
 
 // Components ajouter image item
 function AjouterImageItem() {
-
     const navigate = useNavigate();
     const imgRegex = /(.*[a-z]){5,30}/;
     const [legende, setlegende] = useState("");
@@ -31,13 +30,12 @@ function AjouterImageItem() {
             formData.append("fk_id_user", localStorage.id);
             formData.append("legende", legende);
             formData.append("image", postPicture);
-            formData.append("prenom", JSON.parse(localStorage.prenom))
-            Axios.post("http://localhost:3001/api/posts", formData)
-                .then((response) => {
-                    alert("Votre image est maintenant visible sur GROUPOMANIA")
+            formData.append("prenom", JSON.parse(localStorage.prenom));
+            Axios.post("http://localhost:3001/api/posts", formData).then(response => {
+                alert("Votre image est maintenant visible sur GROUPOMANIA");
 
-                    navigate("/ProfileScreen", { replace: true });
-                });
+                navigate("/ProfileScreen", { replace: true });
+            });
         } else {
             alert(
                 "Veuillez à remplir tous les champs avec un minimun de 5 caractéres"
@@ -91,14 +89,12 @@ function AjouterImageItem() {
                             }}
                         />
                         <div className="addPickItem_item">
-
                             <button className="brt" onClick={addImg}>
                                 Valider
                             </button>
                             <button className="brt" onClick={removeImg}>
                                 Anuler
                             </button>
-
                         </div>
                     </div>
                 </form>

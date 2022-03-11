@@ -13,7 +13,6 @@ import PagePerso from "./Screens/PagePerso/PagePerso";
 import PageAccueil from "./Screens/PageAccueil/PageAccueil";
 
 function App() {
-
     Axios.defaults.headers.common.Authorization = localStorage.bearer;
 
     let jour = new Date().toLocaleDateString("fr-FR", {
@@ -31,7 +30,11 @@ function App() {
                 <header>
                     <div className="entete">
                         <h1>
-                            <img className="logo_entreprise" src="../images/img4.png" alt="Logo entreprise"></img>
+                            <img
+                                className="logo_entreprise"
+                                src="../images/img4.png"
+                                alt="Logo entreprise"
+                            />
                         </h1>
                     </div>
                 </header>

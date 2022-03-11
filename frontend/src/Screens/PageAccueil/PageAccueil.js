@@ -14,22 +14,22 @@ import "./PageAccueil.css";
 
 // ===== Page principal accueil =====
 function PageAccueil() {
-
     const [isAdmin, setIsAdmin] = useState(0);
-    useEffect(() => {
-        Axios
-            .get("http://localhost:3001/api/auth/loginIsAdmin/" + localStorage.id)
-            .then((res) => {
+    useEffect(
+        () => {
+            Axios.get(
+                "http://localhost:3001/api/auth/loginIsAdmin/" + localStorage.id
+            ).then(res => {
                 setIsAdmin(res.data.isAdmin);
             });
-    }, [setIsAdmin]);
+        },
+        [setIsAdmin]
+    );
 
     // Si token j'affiche la page accueil profil
     if (localStorage.bearer) {
-
         return (
             <div>
-
                 {/* Component Bouton */}
                 <Bouton />
 

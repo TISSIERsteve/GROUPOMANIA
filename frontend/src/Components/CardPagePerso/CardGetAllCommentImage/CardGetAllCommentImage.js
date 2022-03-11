@@ -1,10 +1,9 @@
-import React from 'react'
-import Axios from 'axios';
-import { useState, useEffect } from "react"
+import React from "react";
+import Axios from "axios";
+import { useState, useEffect } from "react";
 
 // Components pour obtenir un commentaire poster sur une image page perso
 function CardGetAllCommentImage(props) {
-
     const [com, setcom] = useState("");
 
     // Ouverture fenêtre
@@ -29,7 +28,6 @@ function CardGetAllCommentImage(props) {
     );
     // JSX
     return (
-
         <div className="get">
             <fieldset className="fieldset" onClick={openFieldset}>
                 <legend className="getcomment_fieldset">Voir les commentaires</legend>
@@ -51,7 +49,7 @@ function CardGetAllCommentImage(props) {
                 </section>
             </fieldset>
         </div>
-    )
+    );
 }
 
-export default CardGetAllCommentImage
+export default CardGetAllCommentImage;

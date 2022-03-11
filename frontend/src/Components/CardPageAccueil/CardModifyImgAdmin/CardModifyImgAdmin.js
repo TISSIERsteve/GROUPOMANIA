@@ -1,6 +1,6 @@
-import React from 'react'
-import { useState } from "react"
-import Axios from 'axios';
+import React from "react";
+import { useState } from "react";
+import Axios from "axios";
 
 // Components ADMIN MODIFIER IMG
 function CardModifyImgAdmin({ adminImg }) {
@@ -16,20 +16,21 @@ function CardModifyImgAdmin({ adminImg }) {
     };
 
     // Ouverture fenêtre
-    const [isActive, setisActive] = useState("")
+    const [isActive, setisActive] = useState("");
     const modifyImg = () => {
         if (isActive === "active") {
-            setisActive("")
-
+            setisActive("");
         } else {
-            setisActive("active")
+            setisActive("active");
         }
-    }
+    };
 
     // Fonction envoie image bdd
-    const addModifyImg = (e) => {
+    const addModifyImg = e => {
         e.preventDefault();
-        window.confirm("En tant qu'administrateur voulez vous vraiment modifier l'image sur groupomania");
+        window.confirm(
+            "En tant qu'administrateur voulez vous vraiment modifier l'image sur groupomania"
+        );
         addImgItem();
     };
 
@@ -40,14 +41,15 @@ function CardModifyImgAdmin({ adminImg }) {
             formData.append("legende", legende);
             formData.append("image", postPicture);
             Axios.put(`http://localhost:3001/api/posts/${adminImg}`, formData)
-                .then((response) => {
-                    alert("En tant qu'administrateur l'image à été modifiée")
-                    window.location.reload()
-                }).catch((err) => {
-                    if (err.response.data) {
-                        alert("Veuillez renseigner tous les champs pour modifier l'image")
-                    }
+                .then(response => {
+                    alert("En tant qu'administrateur l'image à été modifiée");
+                    window.location.reload();
                 })
+                .catch(err => {
+                    if (err.response.data) {
+                        alert("Veuillez renseigner tous les champs pour modifier l'image");
+                    }
+                });
         } else {
             alert(
                 "Veuillez à remplir tous les champs avec un minimun de 5 caractéres"
@@ -66,13 +68,12 @@ function CardModifyImgAdmin({ adminImg }) {
     };
 
     return (
-        <div className='cardModifyCommentAdmin'>
-
-            <button title='modifier' onClick={modifyImg}>
+        <div className="cardModifyCommentAdmin">
+            <button title="modifier" onClick={modifyImg}>
                 <i className="fas fa-edit stylo_img" />
             </button>
 
-            <div className='fond'>
+            <div className="fond">
                 <div className={`addPickItem modify_img ${isActive}`}>
                     <h2 className="addPickItem_titre">Modifier l'image</h2>
                     <form className="addPickItem_form_modify">
@@ -80,7 +81,7 @@ function CardModifyImgAdmin({ adminImg }) {
                             <div className="addModifyItem">
                                 <label>Document(s) à télèchargé</label>
                                 <input
-                                    title='modifier image'
+                                    title="modifier image"
                                     className=""
                                     required
                                     type="file"
@@ -93,7 +94,7 @@ function CardModifyImgAdmin({ adminImg }) {
                         </div>
                         <div className="addPickItem_button_img">
                             <input
-                                title='ajouter une legende'
+                                title="ajouter une legende"
                                 type="text"
                                 placeholder="Mettre une légende"
                                 required
@@ -117,7 +118,7 @@ function CardModifyImgAdmin({ adminImg }) {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default CardModifyImgAdmin
+export default CardModifyImgAdmin;

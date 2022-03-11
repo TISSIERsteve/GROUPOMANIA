@@ -7,7 +7,6 @@ import Axios from "axios";
 
 // ===== Components récupére commentaire message que l'on nous à poster sur ma page perso =====
 function CardGetAllComment(props) {
-
     const [com, setcom] = useState("");
 
     // Ouverture fenêtre

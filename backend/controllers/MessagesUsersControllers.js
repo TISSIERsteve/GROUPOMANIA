@@ -7,7 +7,7 @@ exports.getAllMessages = (req, res, next) => {
         (err, resultMessages) => {
             if (err) {
                 return res.status(403).json({
-                    message: "Accès refusé reception des messageperso(accueil)",
+                    message: "Accès refusé reception des messageperso(accueil)"
                 });
             } else {
                 db.query(
@@ -28,8 +28,8 @@ exports.getAllMessages = (req, res, next) => {
 
                             return res.status(200).json({
                                 messageperso: {
-                                    resultat: combined,
-                                },
+                                    resultat: combined
+                                }
                             });
                         }
                     }
@@ -39,7 +39,7 @@ exports.getAllMessages = (req, res, next) => {
     );
 };
 
-// Obtenir tous mes messages et images personnels sur Page Perso 
+// Obtenir tous mes messages et images personnels sur Page Perso
 exports.getOneMessage = (req, res, next) => {
     const id = req.params.id;
     db.query(
@@ -48,7 +48,7 @@ exports.getOneMessage = (req, res, next) => {
         (err, resultMessages) => {
             if (err) {
                 return res.status(403).json({
-                    message: "Accès refusé reception des messageperso(accueil)",
+                    message: "Accès refusé reception des messageperso(accueil)"
                 });
             } else {
                 db.query(
@@ -70,8 +70,8 @@ exports.getOneMessage = (req, res, next) => {
 
                             return res.status(200).json({
                                 messageperso: {
-                                    resultat: combined,
-                                },
+                                    resultat: combined
+                                }
                             });
                         }
                     }
@@ -114,7 +114,7 @@ exports.deleteMessage = (req, res, next) => {
                 return res.status(403).json({ message: "Accés refusé" });
             } else {
                 return res.status(200).json({ message: "Message supprimer" });
-                result
+                result;
             }
         }
     );
@@ -122,20 +122,21 @@ exports.deleteMessage = (req, res, next) => {
 
 // Modifier message perso sur page perso
 exports.updateMessage = (req, res, next) => {
-    const id = req.params.id
+    const id = req.params.id;
     const commentaire = req.body.commentaire;
 
-    db.query(`UPDATE messageperso SET commentaire = ? WHERE fk_id_user = ${id}`,
+    db.query(
+        `UPDATE messageperso SET commentaire = ? WHERE fk_id_user = ${id}`,
         [commentaire],
         (err, result) => {
             if (err) {
-                return res.status(403).json({ message: "Accés refusé" })
+                return res.status(403).json({ message: "Accés refusé" });
             } else {
-                return res.status(200).json({ message: "Message modifié" })
+                return res.status(200).json({ message: "Message modifié" });
             }
         }
-    )
-}
+    );
+};
 
 // Like message
 exports.likeMessage = async (req, res) => {
@@ -146,8 +147,10 @@ exports.likeMessage = async (req, res) => {
         return res.status(400).json({ message: "Les champs sont manquants" });
     }
 
-    db.query("SELECT * FROM messageperso WHERE message_perso_id=?",
-        [message_perso_id], (err, result) => {
+    db.query(
+        "SELECT * FROM messageperso WHERE message_perso_id=?",
+        [message_perso_id],
+        (err, result) => {
             if (err) {
                 throw err;
             } else {
@@ -157,13 +160,12 @@ exports.likeMessage = async (req, res) => {
 
                 if (!userLikes.includes(userId)) {
                     userLikes.push(userId);
-
                 } else {
                     userLikes.splice(userLikes.indexOf(userId), 1);
                 }
 
                 const post = {
-                    likes_id: JSON.stringify(userLikes),
+                    likes_id: JSON.stringify(userLikes)
                 };
 
                 db.query(
@@ -178,7 +180,8 @@ exports.likeMessage = async (req, res) => {
                     }
                 );
             }
-        });
+        }
+    );
 };
 
 // Obtenir les likes sur les messages
@@ -201,4 +204,3 @@ exports.getAllLikeMessage = (req, res) => {
         }
     );
 };
-

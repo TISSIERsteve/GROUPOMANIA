@@ -5,7 +5,6 @@ import "./Bouton.css";
 
 // ===== Components Bouton ouvrir barre latérale =====
 function Bouton() {
-
     // Open boutton
     const open = () => {
         document.getElementById("open").classList.toggle("active");
@@ -14,7 +13,8 @@ function Bouton() {
     // JSX
     return (
         <div>
-            <button aria-label="ouvrir"
+            <button
+                aria-label="ouvrir"
                 onClick={open}
                 type="button"
                 className="open-sidebar button_sidebar">

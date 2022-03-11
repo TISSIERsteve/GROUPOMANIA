@@ -7,8 +7,7 @@ import "./CardGetComment.css";
 
 // ===== Components pour VOIR LES COMMENTAIRES MESSAGES dans card page accueil =====
 function CardGetComment(props) {
-
-    let isAdmin = (props.isAdmin);
+    let isAdmin = props.isAdmin;
     const authUser = parseInt(localStorage.id, 10);
     const prenom = JSON.parse(localStorage.prenom);
     const commentRegex = /(.*[A-Za-z]){5,30}/;
@@ -58,7 +57,7 @@ function CardGetComment(props) {
 
     // Fonction modifier commentaire
     const [isModify, setisModify] = useState({ id: null, active: false });
-    const handleEdit = (id) => {
+    const handleEdit = id => {
         if (isModify.active) {
             setisModify({ id, active: false });
         } else {
@@ -123,7 +122,10 @@ function CardGetComment(props) {
                                     {valida || valide
                                         ? <div>
                                             <div
-                                                className={`section_modify_comment_accueil ${x.comment_id === isModify.id && isModify.active ? "active" : ""}`}>
+                                                className={`section_modify_comment_accueil ${x.comment_id ===
+                                                    isModify.id && isModify.active
+                                                    ? "active"
+                                                    : ""}`}>
                                                 <label className="label">a</label>
                                                 <input
                                                     title="commentaires"
@@ -141,15 +143,17 @@ function CardGetComment(props) {
                                             </div>
 
                                             <div className="validate_accueil">
-
                                                 {/* Boutton modifier message page accueil */}
-                                                <button title="modifier" className="deleModif"
+                                                <button
+                                                    title="modifier"
+                                                    className="deleModif"
                                                     onClick={() => handleEdit(x.comment_id)}>
                                                     <i className="fas fa-edit stylo" />
                                                 </button>
 
                                                 {/* Boutton effacer message page accueil */}
-                                                <button title="supprimer"
+                                                <button
+                                                    title="supprimer"
                                                     className="deleModif"
                                                     onClick={() => handleDelete(x.comment_id)}>
                                                     <i className="fas fa-trash-alt poubelle" />
@@ -162,7 +166,6 @@ function CardGetComment(props) {
                                                         onClick={() => addModify(x.comment_id)}
                                                     />
                                                 </button>
-
                                             </div>
                                         </div>
                                         : <li />}

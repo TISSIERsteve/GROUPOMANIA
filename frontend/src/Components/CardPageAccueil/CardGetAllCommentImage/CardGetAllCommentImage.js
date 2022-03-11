@@ -4,8 +4,7 @@ import Axios from "axios";
 
 // ===== Components pour VOIR LES COMMENTAIRES IMAGES dans page accueil =====
 function CardGetAllCommentImage(props) {
-
-    let isAdmin = (props.isAdmin);
+    let isAdmin = props.isAdmin;
     const commentRegex = /(.*[A-Za-z]){5,30}/;
     const authUser = parseInt(localStorage.id, 10);
     const prenom = JSON.parse(localStorage.prenom);
@@ -54,7 +53,7 @@ function CardGetAllCommentImage(props) {
 
     // Fonction modifier commentaire page accueil sur image
     const [isModify, setisModify] = useState({ id: null, active: false });
-    const handleEdit = (id) => {
+    const handleEdit = id => {
         if (isModify.active) {
             setisModify({ id, active: false });
         } else {
@@ -116,7 +115,10 @@ function CardGetAllCommentImage(props) {
                                     {valida || valide
                                         ? <div>
                                             <div
-                                                className={`section_modify_comment_accueil ${x.comment_id === isModify.id && isModify.active ? "active" : ""}`}>
+                                                className={`section_modify_comment_accueil ${x.comment_id ===
+                                                    isModify.id && isModify.active
+                                                    ? "active"
+                                                    : ""}`}>
                                                 <label className="label">a</label>
                                                 <input
                                                     title="commentaires"
@@ -134,28 +136,29 @@ function CardGetAllCommentImage(props) {
                                             </div>
 
                                             <div className="validate_accueil">
-
                                                 {/* Boutton modifier message image page accueil */}
-                                                <button title="modifier"
+                                                <button
+                                                    title="modifier"
                                                     className="deleModif"
                                                     onClick={() => handleEdit(x.comment_id)}>
                                                     <i className="fas fa-edit stylo" />
                                                 </button>
 
                                                 {/* Boutton effacer message iamge page accueil */}
-                                                <button title="supprimer"
+                                                <button
+                                                    title="supprimer"
                                                     className="deleModif"
                                                     onClick={() => handleDelete(x.comment_id)}>
                                                     <i className="fas fa-trash-alt poubelle" />
                                                 </button>
 
                                                 {/* Boutton valider modification commentaire image */}
-                                                <button title="valider"
+                                                <button
+                                                    title="valider"
                                                     className="deleModif"
                                                     onClick={() => addModify(x.comment_id)}>
                                                     <i className="fas fa-check accueil" />
                                                 </button>
-
                                             </div>
                                         </div>
                                         : <li />}

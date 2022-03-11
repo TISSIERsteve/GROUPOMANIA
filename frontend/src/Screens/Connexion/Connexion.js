@@ -7,7 +7,6 @@ import "./Connexion.css";
 
 // ===== Page de connexion =====
 function Connexion() {
-
     const navigate = useNavigate();
     const [email, setemail] = useState("");
     const [password, setpassword] = useState("");
@@ -21,7 +20,7 @@ function Connexion() {
                 `http://localhost:3001/api/auth/login`,
                 {
                     email,
-                    password,
+                    password
                 }
             );
 
@@ -32,7 +31,6 @@ function Connexion() {
             localStorage.setItem("prenom", JSON.stringify(response.data.user.prenom));
 
             navigate("/ProfileScreen", { replace: true });
-
         } catch (err) {
             alert("E-mail ou mot de passe incorrect");
             window.location.reload();

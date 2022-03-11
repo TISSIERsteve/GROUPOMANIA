@@ -114,13 +114,12 @@ exports.likeImg = async (req, res) => {
 
             if (!userLikes.includes(userId)) {
                 userLikes.push(userId);
-
             } else {
                 userLikes.splice(userLikes.indexOf(userId), 1);
             }
 
             const post = {
-                likes_id: JSON.stringify(userLikes),
+                likes_id: JSON.stringify(userLikes)
             };
 
             db.query(

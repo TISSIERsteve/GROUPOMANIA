@@ -6,7 +6,9 @@ exports.getAllComments = (req, res, next) => {
         `SELECT content, comment_id,user_id, prenom FROM comment JOIN User ON fk_id_user = user_id WHERE fk_id_message ORDER BY content DESC`,
         (err, result) => {
             if (err) {
-                return res.status(403).json({ message: "Accès refusé du commentaire poster (perso)" });
+                return res
+                    .status(403)
+                    .json({ message: "Accès refusé du commentaire poster (perso)" });
             } else {
                 return res.status(200).json({
                     result
@@ -16,7 +18,7 @@ exports.getAllComments = (req, res, next) => {
     );
 };
 
-// Récupérer mes commentaires message  page perso 
+// Récupérer mes commentaires message  page perso
 exports.getOneComment = (req, res, next) => {
     const id_message = req.params.id;
 
@@ -25,7 +27,9 @@ exports.getOneComment = (req, res, next) => {
         [id_message],
         (err, result) => {
             if (err) {
-                return res.status(403).json({ message: "Accès refusé du commentaire poster (accueil)" });
+                return res
+                    .status(403)
+                    .json({ message: "Accès refusé du commentaire poster (accueil)" });
             } else {
                 return res.status(200).json({
                     result
@@ -42,7 +46,7 @@ exports.createComment = (req, res, next) => {
     const messageperso = {
         content: commentaires,
         fk_id_user: compte,
-        fk_id_message: id_post,
+        fk_id_message: id_post
     };
 
     db.query("INSERT INTO comment set ?", messageperso, (err, result) => {
@@ -56,33 +60,38 @@ exports.createComment = (req, res, next) => {
 
 // Effacer un commentaire sur page accueil
 exports.deleteComment = (req, res, next) => {
-
-    db.query("DELETE FROM comment WHERE comment_id=?",
-        [req.params.id], (err, result) => {
+    db.query(
+        "DELETE FROM comment WHERE comment_id=?",
+        [req.params.id],
+        (err, result) => {
             if (err) {
-                console.log(err)
-                return res.status(500).json({ message: "Une erreur est survenue" })
+                console.log(err);
+                return res.status(500).json({ message: "Une erreur est survenue" });
             } else {
-                return res.status(200).json({ message: "Votre commentaire à bien été supprimer" })
-
+                return res
+                    .status(200)
+                    .json({ message: "Votre commentaire à bien été supprimer" });
             }
-        })
+        }
+    );
 };
 
 // Modifier un commentaire perso sur page accueil
 exports.updateComment = (req, res, next) => {
-
-    const id = req.params.id
+    const id = req.params.id;
     const commentaire = req.body.commentaire;
 
-    db.query(`UPDATE comment SET content = ? WHERE comment_id = ${id}`,
+    db.query(
+        `UPDATE comment SET content = ? WHERE comment_id = ${id}`,
         [commentaire],
         (err, result) => {
             if (err) {
-                return res.status(403).json({ message: "Accés refusé pour la modification de l'image" })
+                return res
+                    .status(403)
+                    .json({ message: "Accés refusé pour la modification de l'image" });
             } else {
-                return res.status(200).json({ message: "Message modifié" })
+                return res.status(200).json({ message: "Message modifié" });
             }
         }
-    )
-}
+    );
+};

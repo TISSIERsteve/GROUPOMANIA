@@ -2,7 +2,7 @@
 .form_item {
   max-width: 60rem;
   margin: 10rem auto;
-  background-color: rgb(240,233,233);
+  background-color: rgb(240, 233, 233);
   padding: 1rem;
 }
 
@@ -18,15 +18,14 @@
 
 form input,
 form button {
-    padding: 1rem;
-    border-radius: 0.5rem;
-    cursor: pointer;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
 }
 
 button:hover {
-    transform: scale(1.02);
-    transition: 0.5s ease;
-    font-weight: bold;
-    color: rgb(212, 17, 17);
+  transform: scale(1.02);
+  transition: 0.5s ease;
+  font-weight: bold;
+  color: rgb(212, 17, 17);
 }
-
