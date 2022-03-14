@@ -22,6 +22,8 @@
 
 .like {
   display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .action {
@@ -30,4 +32,16 @@
 
 .noaction {
   color: black;
+}
+
+.couleur {
+    display: none;
+}
+
+.couleur.active {
+    display: inherit;
+}
+
+.aime {
+    color: aqua;
 }

@@ -7,6 +7,7 @@ import "./CardLikeImage.css";
 
 // Components pour like image
 function CardLikeImage({ idLike }) {
+
     // Afficher les likes images
     const [userlikes, setUserLikes] = useState([]);
 
@@ -47,8 +48,11 @@ function CardLikeImage({ idLike }) {
                         if (x.post_id === idLike) {
                             return (
                                 <ul key={x.post_id}>
+                                    <li className={x.likes_id.length && x.likes_id.includes([authUser]) ? `couleur.active` : `couleur`}>
+                                        <p className="aime">J'aime</p>
+                                    </li>
                                     <li>
-                                        {!x.likes_id ? "0" : JSON.parse(x.likes_id).length}
+                                        {!x.likes_id ? "0" : JSON.parse(x.likes_id).length} like(s)
                                     </li>
                                 </ul>
                             );

@@ -66,7 +66,7 @@ function Search() {
                     />
 
                     <span>
-                        <i className="far fa-plus-square add" onClick={addComment} />
+                        <i className="fas fa-check add" onClick={addComment} />
                     </span>
                 </div>
             </form>

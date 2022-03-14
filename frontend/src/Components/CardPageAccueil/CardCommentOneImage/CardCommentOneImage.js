@@ -68,7 +68,7 @@ function CardCommentOneImage(props) {
                 ></input>
 
                 <button title='modifier' className='btn_modify'>
-                    <i className="fas fa-plus-circle valide" onClick={addCommentImg}></i>
+                    <i className="fas fa-check valide" onClick={addCommentImg}></i>
                 </button>
 
             </div>

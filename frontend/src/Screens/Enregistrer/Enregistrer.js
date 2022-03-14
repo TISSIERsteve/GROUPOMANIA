@@ -40,7 +40,7 @@ function Enregistrer() {
                     navigate("/AccountScreen", { replace: true });
                 })
                 .catch(err => {
-                    alert("Vous êtes déjà enregistrer avec cette adresse e-mail");
+                    alert("Cette adresse e-mail est déjà utiliser, veuillez en choisir une autre.");
                 });
         } else {
             alert("Merci de remplir tous les champs");
