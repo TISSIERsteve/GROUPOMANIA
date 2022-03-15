@@ -11,7 +11,9 @@ exports.createPost = (req, res, next) => {
         title: content,
         media_url,
         fk_id_user: req.body.fk_id_user,
-        content: req.body.prenom
+        content: req.body.prenom,
+        likes_id: JSON.stringify([]),
+        dislikes_id: JSON.stringify([])
     };
 
     db.query("INSERT INTO post set ?", media, (err, result) => {

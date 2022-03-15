@@ -40,7 +40,7 @@ function CardLikeMessage({ idLikeMessage }) {
     return (
         <div className="like_dislike">
             <div className="like">
-                <button className="btn_like u" onClick={() => addLike(idLikeMessage)}>
+                <button className="btn_like up" onClick={() => addLike(idLikeMessage)}>
 
                     Up <i className="fas fa-thumbs-up" />
 

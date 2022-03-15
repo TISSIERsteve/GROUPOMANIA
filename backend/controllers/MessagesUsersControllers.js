@@ -90,7 +90,9 @@ exports.createMessage = (req, res, next) => {
     const messageperso = {
         prenom,
         commentaire,
-        fk_id_user: id
+        fk_id_user: id,
+        likes_id: JSON.stringify([]),
+        dislikes_id: JSON.stringify([])
     };
 
     db.query("INSERT INTO messageperso set ?", messageperso, (err, result) => {

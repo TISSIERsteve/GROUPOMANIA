@@ -142,6 +142,7 @@ function Enregistrer() {
                                     document.getElementById("span4").innerHTML =
                                         "Adresse e-mail valide";
                                 } else {
+                                    setemail("")
                                     document.getElementById("span4").style.fontWeight = "bold";
                                     document.getElementById("span4").style.color = "red";
                                     document.getElementById("span4").innerHTML =

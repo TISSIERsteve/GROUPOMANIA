@@ -65,8 +65,7 @@ exports.deleteComment = (req, res, next) => {
         [req.params.id],
         (err, result) => {
             if (err) {
-                console.log(err);
-                return res.status(500).json({ message: "Une erreur est survenue" });
+                return res.status(403).json({ message: "Une erreur est survenue" });
             } else {
                 return res
                     .status(200)
