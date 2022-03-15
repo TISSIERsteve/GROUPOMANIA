@@ -26,7 +26,6 @@ exports.createPost = (req, res, next) => {
 // Modifier une image perso sur page perso
 exports.updateCommentImg = (req, res, next) => {
     const id = req.params.id;
-    console.log(id);
 
     db.query("SELECT * FROM post WHERE fk_id_user = ?", [id], (err, result) => {
         if (err) {
